@@ -1,5 +1,9 @@
 ## Unreleased
 
+Changes:
+
+- Update to Ansys Workbench 18.1
+
 ## 0.1.0 (2017-06-14)
 
 Features:
