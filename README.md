@@ -12,7 +12,7 @@ so that it works in OSC's supercomputer environment.
 This app requires the following software be installed on the nodes that the
 batch job is intended to run on:
 
-- [ANSYS Workbench](http://www.ansys.com/products/platform) 15.0.7+
+- [ANSYS Workbench](http://www.ansys.com/products/platform) 18.1+
   - [CFX](http://www.ansys.com/Products/Fluids/ANSYS-CFX)
   - [Fluent](http://www.ansys.com/Products/Fluids/ANSYS-FLUENT)
 - [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod) 6.0.1+
