@@ -4,7 +4,7 @@ batch_connect:
 
 script:
   job_environment:
-    ANSYS_MODULE: "ansys/15.0.7"
+    ANSYS_MODULE: "ansys/18.1"
     <%- if node_type.include? "vis" -%>
     ENABLE_VIS: "1"
     <%- end -%>
