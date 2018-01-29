@@ -1,5 +1,5 @@
 ---
-cluster: "oakley"
+cluster: "owens"
 form:
   - version
   - bc_account
@@ -17,24 +17,18 @@ attributes:
     widget: select
     label: "Node type"
     help: |
-      - **any** - (*12 cores*) Use any available Oakley node. This reduces the
+      - **any** - (*28 cores*) Use any available Owens node. This reduces the
         wait time as there are no node requirements.
-      - **vis** - (*12 cores*) Use an Oakley node that has an NVIDIA Tesla
-        M2070 GPU with hardware rendering enabled for 3D visualization. There
-        are 128 of these nodes on Oakley.
-      - **bigmem** - (*12 cores*) Use an Oakley node that has 192GB of
-        available RAM. There are 8 of these nodes on Oakley.
-      - **hugemem** - (*32 cores*) Use an Oakley node that has 1TB of available
-        RAM as well as 32 cores. There are 1 of these nodes on Oakley.
+      - **gpu** - (*28 cores*) Use an Owens node that has an NVIDIA P100 "Pascal" GPU with hardware rendering enabled for 3D visualization. There are 160 of these nodes on Owens.
+      - **hugemem** - (*48 cores*) Use an Oakley node that has 1.5TB of available
+        RAM as well as 48 cores. There are 1 of these nodes on Owens.
     options:
-      - [ "any",     ":ppn=12"            ]
-      - [ "vis",     ":ppn=12:vis:gpus=1" ]
-      - [ "bigmem",  ":ppn=12:bigmem"     ]
-      - [ "hugemem", ":ppn=32:hugemem"    ]
+      - [ "any",     ":ppn=28"            ]
+      - [ "gpu",     ":ppn=28:gpus=1" ]
+      - [ "hugemem", ":ppn=48:hugemem"    ]
   version:
     widget: select
     label: "ANSYS Workbench version"
     help: "This defines the version of ANSYS you want to load."
     options:
-      - [ "15.0.7", "ansys/15.0.7" ]
-      - [ "18.1",   "ansys/18.1"   ]
+      - [ "18.1",   "ansys/.18.1"   ]

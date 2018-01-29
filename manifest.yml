@@ -6,4 +6,4 @@ role: batch_connect
 description: |
   This app will launch an [ANSYS Workbench](http://www.ansys.com/) within a
   [Turbo VNC](https://www.turbovnc.org/) server on the
-  [Oakley cluster](https://www.osc.edu/resources/technical_support/supercomputers/oakley).
+  [Owens cluster](https://www.osc.edu/resources/technical_support/supercomputers/owens).
