@@ -1,9 +1,9 @@
 ---
-name: ANSYS Workbench (Owens)
+name: ANSYS Workbench 18.1 (PMIU0149)
 category: Interactive Apps
 subcategory: GUIs
 role: batch_connect
 description: |
   This app will launch an [ANSYS Workbench](http://www.ansys.com/) within a
   [Turbo VNC](https://www.turbovnc.org/) server on the
-  [Owens cluster](https://www.osc.edu/resources/technical_support/supercomputers/owens).
+  [Owens cluster](https://www.osc.edu/resources/technical_support/supercomputers/owens) using project account PMIU0149.
