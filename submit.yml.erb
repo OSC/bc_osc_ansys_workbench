@@ -4,5 +4,4 @@ batch_connect:
 script:
   native:
     resources:
-      software: "ansys+1"
       nodes: "<%= bc_num_slots.blank? ? "1" : bc_num_slots %><%= node_type %>"
