@@ -11,27 +11,15 @@ form:
 attributes:
   bc_vnc_resolution:
     required: true
-  bc_account:
-    help: "You can leave this blank if **not** in multiple projects."
+  bc_account: "PMIU0149"
   node_type:
     widget: select
     label: "Node type"
     help: |
-      - **any** - (*28 cores*) Use any available Owens node. This reduces the
-        wait time as there are no node requirements.
       - **gpu** - (*28 cores*) Use an Owens node that has an NVIDIA P100 "Pascal" GPU with hardware rendering enabled for 3D visualization. There are 160 of these nodes on Owens.
-      - **hugemem** - (*48 cores*) Use an Oakley node that has 1.5TB of available
-        RAM as well as 48 cores. There are 1 of these nodes on Owens.
+      - **any** - (*28 cores*) Use any available Owens node. This reduces the
+              wait time as there are no node requirements.
     options:
-      - [ "any",     ":ppn=28"            ]
       - [ "gpu",     ":ppn=28:gpus=1"     ]
-      - [ "hugemem", ":ppn=48:hugemem"    ]
-  version:
-    widget: select
-    label: "Ansys Workbench version"
-    help: "This defines the version of ANSYS you want to load."
-    options:
-      - [ "18.1", "ansys/.18.1" ]
-
-
-
+      - [ "any",     ":ppn=28"            ]
+  version: "ansys/.18.1"
