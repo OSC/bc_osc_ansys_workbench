@@ -26,4 +26,12 @@ attributes:
       - [ "any",     ":ppn=28"            ]
       - [ "gpu",     ":ppn=28:gpus=1"     ]
       - [ "hugemem", ":ppn=48:hugemem"    ]
-  version: "ansys/.18.1"
+  version:
+    widget: select
+    label: "Ansys Workbench version"
+    help: "This defines the version of ANSYS you want to load."
+    options:
+      - [ "18.1", "ansys/.18.1" ]
+
+
+
