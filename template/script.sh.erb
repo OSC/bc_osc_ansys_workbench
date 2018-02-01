@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-<%- gpu = context.node_type.include?("vis") -%>
+<%- gpu = context.node_type.include?("gpu") -%>
 
 # Set working directory to home directory
 cd "${HOME}"
