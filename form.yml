@@ -16,10 +16,10 @@ attributes:
     widget: select
     label: "Node type"
     help: |
-      - **gpu** - (*28 cores*) Use an Owens node that has an NVIDIA P100 "Pascal" GPU with hardware rendering enabled for 3D visualization. There are 160 of these nodes on Owens.
+      - **vis** - (*28 cores*) Use an Owens node that has an NVIDIA P100 "Pascal" GPU with hardware rendering enabled for 3D visualization. There are 160 of these nodes on Owens.
       - **any** - (*28 cores*) Use any available Owens node. This reduces the
               wait time as there are no node requirements.
     options:
-      - [ "gpu",     ":ppn=28:gpus=1"     ]
+      - [ "vis",     ":ppn=28:vis:gpus=1"     ]
       - [ "any",     ":ppn=28"            ]
   version: "ansys/.18.1"
