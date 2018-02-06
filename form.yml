@@ -17,17 +17,17 @@ attributes:
     widget: select
     label: "Node type"
     help: |
-      - **any** - (*28 cores*) Use any available Owens node. This reduces the
-        wait time as there are no node requirements.
       - **vis** - (*28 cores*) This node includes an NVIDIA Tesla P100 GPU
         with an X server running in the background. This allows for Hardware
         Rendering with the GPU typically needed for 3D visualization using
         VirtualGL. There are currently only 160 of these nodes on Owens.
+      - **any** - (*28 cores*) Use any available Owens node. This reduces the
+        wait time as there are no node requirements.
       - **hugemem** - (*48 cores*) Use an Oakley node that has 1.5TB of available
         RAM as well as 48 cores. There are 1 of these nodes on Owens.
     options:
+      - [ "vis",     ":ppn=28:vis:gpus=1" ]
       - [ "any",     ":ppn=28"            ]
-      - [ "vis",     ":ppn=28:vis:gpus=1"     ]
       - [ "hugemem", ":ppn=48:hugemem"    ]
   version:
     widget: select
