@@ -22,7 +22,7 @@ SIMULATION CONTROL:
               Start Command = "%{impidir}/bin/mpirun" -genv I_MPI_PLATFORM auto -r "%{env:I_MPI_MPD_RSH}" -configfile "%{req:appfile}"
               Execution Path = %{impidir}/bin
               Appfile Host Entry = -n %{hostprocs} -host %{hostname} %{executable} %{arguments}
-              <%- if context.version == "ansys/.18.1" -%>
+              <%- if context.version == "ansys/15.0.7" -%>
               Executable Suffix = -impi
               <%- else -%>
               Executable Suffix = -mpi
