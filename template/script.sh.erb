@@ -33,7 +33,7 @@ cd "${HOME}"
 
 # Load the required environment
 module purge
-module load <%= context.version %> <%= "intel/16.0.3 virtualgl/2.5" if gpu %>
+module load intel/16.0.3 mvapich2/2.2 <%= context.version %><%= " virtualgl" if gpu %>
 
 # Another ANSYS job with the same job name (file) is already running in this
 # directory or the file.lock file has not been deleted from an abnormally

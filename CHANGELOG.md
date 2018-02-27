@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Added back the missing MPI environment.
+
+## [0.3.0] - 2018-02-26
+### Added
+- Added ANSYS 17.2 as an option.
+- Added warning for using older versions.
 
 ## [0.2.0] - 2018-01-03
 ### Added
@@ -51,7 +58,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.0.7...v0.1.0
 [0.0.7]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.0.6...v0.0.7
