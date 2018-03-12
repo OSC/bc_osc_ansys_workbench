@@ -1,5 +1,5 @@
 ---
-name: ANSYS Workbench (Owens)
+name: ANSYS Workbench
 category: Interactive Apps
 subcategory: GUIs
 role: batch_connect
@@ -7,7 +7,3 @@ description: |
   This app will launch an [ANSYS Workbench](http://www.ansys.com/) within a
   [Turbo VNC](https://www.turbovnc.org/) server on the
   [Owens cluster](https://www.osc.edu/resources/technical_support/supercomputers/owens).
-
-  **Warning: 15.0.7 will stop being available in March when this app is updated to submit jobs to Owens.
-  Please transition to using a later version of ANSYS Workbench. If the departure of 15.0.7
-  will be problematic, please contact oschelp@osc.edu**
