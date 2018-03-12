@@ -32,7 +32,7 @@ attributes:
   version:
     widget: select
     label: "ANSYS Workbench version"
-    help: "This defines the version of ANSYS you want to load. **15.0.7 will stop being available in March when this app is updated to submit jobs to Owens. Please use a later version.**"
+    help: "This defines the version of ANSYS you want to load.
     options:
       - [ "18.1",   "ansys/18.1"   ]
       - [ "17.2",   "ansys/17.2"   ]
