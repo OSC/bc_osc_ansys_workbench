@@ -35,6 +35,7 @@ batch_connect:
   template: "vnc"
 script:
   native:
+  accounting_id: "<%= account %>"
   <%- slurm_args.each do |arg| %>
     - "<%= arg %>"
   <%- end %>
