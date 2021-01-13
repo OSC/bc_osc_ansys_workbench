@@ -1,5 +1,7 @@
 <%-
-  groups = OodSupport::User.new.groups.map(&:name).reject { |group| /^P.+$/.match(group).nil? }
+  groups = OodSupport::User.new.groups.sort_by(&:id).tap { |groups|
+    groups.unshift(groups.delete(OodSupport::Process.group))
+  }.map(&:name).grep(/^P./)
 -%>
 ---
 cluster:
