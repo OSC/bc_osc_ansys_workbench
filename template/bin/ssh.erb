@@ -6,10 +6,6 @@
 # to update in the future.
 #
 
-<%-
-  torque_cluster = OodAppkit.clusters[context.cluster].job_config[:adapter] == 'torque'
--%>
-
 module purge
 
 echo "Arguments = ${@}" >> <%= session.staged_root.join("ssh.log") %>
@@ -37,8 +33,4 @@ shift $((OPTIND-1))
 echo "Submitted Arguments = ${HOST} ${*}" >> <%= session.staged_root.join("ssh.log") %>
 
 # CFX likes to wrap entire command + args as a single argument
-<%- if torque_cluster -%>
-exec pbsdsh -o -h "${HOST}" sh -c "${*}"
-<% else %>
 exec srun -w "${HOST}" --ntasks 1 --nodes 1 /bin/bash -c "${*}"
-<% end %>

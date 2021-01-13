@@ -1,10 +1,9 @@
 <%-
   nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
   num_cpus_for_free = 4
-  torque_cluster = OodAppkit.clusters[cluster].job_config[:adapter] == 'torque'
   ppn = if num_cores.blank?
           28
-        elsif nodes > 1 && !torque_cluster
+        elsif nodes > 1
           # slurm cluster is going to get the whole node if requesting more than 1 node
           # so be sure you request 28 cores for the license calculations below
           28
@@ -17,24 +16,17 @@
     ppn = 48
     partition = bc_num_slots.to_i > 1 ? "hugemem-parallel" : "hugemem"
     slurm_args = [ "--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--partition", partition ]
-    torque_args = "#{nodes}:ppn=#{ppn}:#{node_type}"
   when "vis"
     slurm_args = ["--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--gpus-per-node", "1", "--gres", "vis" ]
-    torque_args = "#{nodes}:ppn=#{ppn}:#{node_type}:gpus=1"
   else
     slurm_args = ["--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}" ]
-    torque_args = "#{nodes}:ppn=#{ppn}"
   end
 
   licensed_cpus = (nodes * ppn) - num_cpus_for_free
   # Do not attempt to reserve negative licenses
   need_parallel_licenses = reserve_parallel_licenses.to_i == 1 && licensed_cpus > 0
 
-  if torque_cluster
-    licenses = need_parallel_licenses ? "ansys+1%ansyspar+#{licensed_cpus}" : "ansys+1"
-  else
-    licenses = need_parallel_licenses ? "ansys@osc:1,ansyspar@osc:#{licensed_cpus}" : "ansys@osc:1"
-  end
+  licenses = need_parallel_licenses ? "ansys@osc:1,ansyspar@osc:#{licensed_cpus}" : "ansys@osc:1"
 
   slurm_args += [ "--licenses", licenses ]
 %>
@@ -43,12 +35,6 @@ batch_connect:
   template: "vnc"
 script:
   native:
-  <%- if torque_cluster %>
-    resources:
-      nodes: "<%= torque_args %>"
-      software: "<%= licenses %>"
-  <%- else %>
   <%- slurm_args.each do |arg| %>
     - "<%= arg %>"
-  <%- end %>
   <%- end %>

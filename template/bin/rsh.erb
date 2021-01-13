@@ -5,10 +5,6 @@
 # environment breaking `pbsrsh`, so I created a simple alternative
 #
 
-<%-
-  torque_cluster = OodAppkit.clusters[context.cluster].job_config[:adapter] == 'torque'
--%>
-
 module purge
 
 echo "Arguments = ${@}" >> <%= session.staged_root.join("rsh.log") %>
@@ -36,8 +32,4 @@ shift $((OPTIND-1))
 echo "Submitted Arguments = ${HOST} ${*}" >> <%= session.staged_root.join("rsh.log") %>
 
 # CFX likes to wrap entire command + args as a single argument
-<%- if torque_cluster -%>
-exec pbsdsh -o -h "${HOST}" sh -c "${*}"
-<% else %>
 exec srun -w "${HOST}" --ntasks 1 --nodes 1 sh -c "${*}"
-<% end %>
