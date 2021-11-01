@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## [0.12.1] - 2020-11-01
+## [0.12.2] - 2021-11-01
 ### Fixed
 - Use ssh instead of srun to allow checks to complete for parallel Fluent runs with > 7 nodes - 
   [30](https://github.com/OSC/bc_osc_ansys_workbench/pull/30)
@@ -156,7 +156,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.1...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.2...HEAD
+[0.12.2]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.1...v0.12.2
 [0.12.1]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.11.2...v0.12.0
 [0.11.2]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.11.1...v0.11.2
