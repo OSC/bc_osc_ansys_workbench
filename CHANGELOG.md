@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.13.0] - 2021-12-16
+### Changed
+- Use the new dynamic JS feature of OnDemand to control the core numbers in forms using the form.yml.erb - 
+  [33](https://github.com/OSC/bc_osc_ansys_workbench/pull/33)
+
 ## [0.12.2] - 2021-11-01
 ### Fixed
 - Use ssh instead of srun to allow checks to complete for parallel Fluent runs with > 7 nodes - 
@@ -156,7 +161,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.2...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.3...HEAD
+[0.12.3]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.1...v0.12.2
 [0.12.1]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.11.2...v0.12.0
