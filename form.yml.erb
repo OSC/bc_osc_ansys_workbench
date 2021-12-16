@@ -63,9 +63,21 @@ attributes:
         available RAM as well as 48 cores. There are 16 of these nodes on
         Owens.
     options:
-      - "any"
-      - "vis"
-      - "hugemem"
+      - [
+        'any', 'any',
+        data-max-num-cores: 28,
+        data-min-num-cores: 0,
+        ]
+      - [
+        'vis', 'vis',
+        data-max-num-cores: 28,
+        data-min-num-cores: 0,
+        ]
+      - [
+        'hugemem', 'hugemem',
+        data-max-num-cores: 48,
+        data-min-num-cores: 48,
+        ]
   version:
     widget: select
     label: "ANSYS Workbench version"
@@ -84,8 +96,11 @@ attributes:
     label: "License provider"
     help: "Some users are required to provide their own license information"
     options:
-      - ["I can use the OSC license", "osc"]
-      - ["I need to use an external license", "external"]
+      - ['I can use the OSC license', 'osc',
+        data-hide-extern-license-server: true,
+        data-hide-extern-license-file: true,
+      ]
+      - ['I need to use an external license', 'external']
   extern_license_server:
     label: "External License Server"
     placeholder: port@ip
