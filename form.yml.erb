@@ -27,7 +27,7 @@ attributes:
       Number of cores on node type (4 GB per core unless requesting whole
       node). Leave blank if requesting full node.
     min: 0  # This is treated as requesting the max allowable
-    max: 48  # This will be updated by form.js
+    max: 28  # This will be updated by form.js
     step: 1
   bc_num_slots:
     help: |
@@ -65,12 +65,12 @@ attributes:
       - [
         'any', 'any',
         data-max-num-cores: 28,
-        data-min-num-cores: 0,
+        data-min-num-cores: 1,
         ]
       - [
         'vis', 'vis',
         data-max-num-cores: 28,
-        data-min-num-cores: 0,
+        data-min-num-cores: 1,
         ]
       - [
         'hugemem', 'hugemem',
@@ -95,10 +95,7 @@ attributes:
     label: "License provider"
     help: "Some users are required to provide their own license information"
     options:
-      - ['I can use the OSC license', 'osc',
-        data-hide-extern-license-server: true,
-        data-hide-extern-license-file: true,
-        ]
+      - ['I can use the OSC license', 'osc']
       - ['I need to use an external license', 'external']
   extern_license_server:
     label: "External License Server"
