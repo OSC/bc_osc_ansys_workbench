@@ -29,7 +29,6 @@ attributes:
     min: 0  # This is treated as requesting the max allowable
     max: 48  # This will be updated by form.js
     step: 1
-    id: num_cores
   bc_num_slots:
     help: |
       Currently only Fluent and CFX have been tested to support multiple nodes.
@@ -99,7 +98,7 @@ attributes:
       - ['I can use the OSC license', 'osc',
         data-hide-extern-license-server: true,
         data-hide-extern-license-file: true,
-      ]
+        ]
       - ['I need to use an external license', 'external']
   extern_license_server:
     label: "External License Server"
