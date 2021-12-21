@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.13.1] - 2021-12-21
+
+### Changed
+- Use the new dynamic JS feature in OnDemand to hide license stuff in [36](https://github.com/OSC/bc_osc_ansys_workbench/pull/36).
+
 ## [0.13.0] - 2021-12-16
 ### Changed
 - Use the new dynamic JS feature of OnDemand to control the core numbers in forms using the form.yml.erb - 
