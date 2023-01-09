@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.16.2] - 2023-01-09
+
+- Support for partial hugemem nodes in [42](https://github.com/OSC/bc_osc_ansys_workbench/pull/42).
+
+## [0.16.1] - 2022-12-08
+
+- Same as version 0.16.0
+
+## [0.16.0] - 2022-12-08
+
+- Added 2022 versions in [41](https://github.com/OSC/bc_osc_ansys_workbench/pull/41).
+
+## [0.15.0] - 2022-12-06
+
+- Removed several module versions of the app in [40](https://github.com/OSC/bc_osc_ansys_workbench/pull/40).
+
 ## [0.14.0] - 2022-02-8
 
 ### Added
@@ -173,7 +189,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.14.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.16.2...HEAD
+[0.16.2]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.16.1...v0.16.2
+[0.16.1]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.16.0...v0.16.1
+[0.16.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.15.0...v0.16.0
+[0.15.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/OSC/bc_osc_ansys_workbench/compare/v0.12.2...v0.13.0
