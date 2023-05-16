@@ -60,11 +60,13 @@ export I_MPI_PMI_EXTENSIONS=on
 # Add custom "OSC MPI" as a start method
 export CFX5_START_METHODS_CCL="<%= session.staged_root.join("cfx_assets", "start-methods.ccl") %>"
 
+# disable checking for dependencies because it takes forever. See INC0370959.
+export ANS_NODEPCHECK='nothankyou'
+
 # Make a hosts file that CFX will use in Parallel Distributed
 mkdir -p "${HOME}/.cfx"
 export CFX5_HOSTS_CCL="${HOME}/.cfx/hostinfo.${PBS_JOBID}"
 NODES=$(tr '\n' ',' < "${PBS_NODEFILE}" | sed 's/,$//g')
-touch "${CFX5_HOSTS_CCL}"
 cfx5parhosts -add "${NODES}" -user -file "${CFX5_HOSTS_CCL}"
 
 # Only give OSC MPI option to user through GUI
