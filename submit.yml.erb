@@ -1,4 +1,8 @@
 <%-
+
+  err_msg = "You are not a member of the ansysflu group. Please email oschelp@osc.edu to request access to ANSYS Workbench, or use an external license."
+  raise(StandardError, err_msg) unless CurrentUser.group_names.include?('ansysflu') || user_license_provider == 'external'
+
   nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
   num_cpus_for_free = 4
   ppn = if num_cores.blank?
