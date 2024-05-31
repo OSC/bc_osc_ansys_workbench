@@ -1,14 +1,9 @@
-<%-
-  groups = OodSupport::User.new.groups.sort_by(&:id).tap { |groups|
-    groups.unshift(groups.delete(OodSupport::Process.group))
-  }.map(&:name).grep(/^P./)
--%>
 ---
 cluster:
   - "owens"
 form:
   - version
-  - account
+  - auto_accounts
   - bc_num_hours
   - bc_num_slots
   - num_cores
@@ -34,13 +29,6 @@ attributes:
       Currently only Fluent and CFX have been tested to support multiple nodes.
   bc_vnc_resolution:
     required: true
-  account:
-    label: "Project"
-    widget: select
-    options:
-    <%- groups.each do |group| -%>
-      - "<%= group %>"
-    <%- end -%>
   reserve_parallel_licenses:
     widget: check_box
     checked_value: 1
