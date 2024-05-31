@@ -70,6 +70,7 @@ attributes:
     label: "ANSYS Workbench version"
     help: "This defines the version of ANSYS you want to load."
     options:
+    - [ "2023 R2", "ansys/2023R2" ]
     - [ "2022 R2", "ansys/2022R2" ]
     - [ "2022 R1", "ansys/2022R1" ]
     - [ "2021 R2", "ansys/2021R2" ]
