@@ -111,11 +111,7 @@ export -n I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS
 
 # Launch ANSYS Workbench
 <%- if gpu -%>
-<%- if context.cluster == 'owens' -%>
-module load intel/16.0.3 virtualgl/2.6.3
-<%- else -%>
 module load virtualgl
-<%- end -%>
 module list
 set -x
 vglrun runwb2
