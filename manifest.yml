@@ -5,8 +5,8 @@ subcategory: GUIs
 role: batch_connect
 description: |
   This app will launch an [ANSYS Workbench] within a [Turbo VNC] server on the
-  [Owens cluster].
+  [Cardinal cluster].
 
   [ANSYS Workbench]: https://www.ansys.com/
   [Turbo VNC]: https://www.turbovnc.org/
-  [Owens cluster]: https://www.osc.edu/resources/technical_support/supercomputers/owens
+  [Cardinal cluster]: https://www.osc.edu/resources/technical_support/supercomputers/cardinal
