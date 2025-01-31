@@ -105,6 +105,9 @@ EOL
 # Add RSH and SSH wrappers for Fluent and CFX
 export PATH="<%= session.staged_root.join("bin") %>:${PATH}"
 
+export NODEFILE="$TMPDIR/nodelist"
+node_parser > $NODEFILE
+
 # Fix the mulitl-node job issue with Intel MPI due to Slurm upgrade
 # https://www.osc.edu/resources/technical_support/known_issues/parallel_job_with_intelmpi_hangs
 export -n I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS

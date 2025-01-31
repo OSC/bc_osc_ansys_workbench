@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+env_var = ENV['SLURM_JOB_NODELIST'].to_s
+
+multi_match = env_var.match('(?<cluster>\w)\[(?<start_node>\d{4})-(?<end_node>\d{4})\]')
+
+if !multi_match.nil?
+  start_node = match['start_node'].to_i
+  cluster = match['cluster']
+  nodes = match['end_node'].to_i - start_node
+
+  node_list = (0..nodes).map do |node|
+                formatted = sprintf('%04d', start_node + node)
+                "#{cluster}#{formatted}"
+              end.join(',')
+
+  puts node_list
+else
+  puts env_var
+end
