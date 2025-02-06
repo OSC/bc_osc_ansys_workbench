@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 env_var = ENV['SLURM_JOB_NODELIST'].to_s
-procs = ENV['SLURM_NPROCS'].to_i
+procs = ENV['SLURM_JOB_CPUS_PER_NODE'].to_i
 
 match = env_var.match('(?<cluster>\w)\[(?<start_node>\d{4})-(?<end_node>\d{4})\]')
 
