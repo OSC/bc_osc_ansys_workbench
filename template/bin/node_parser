@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 env_var = ENV['SLURM_JOB_NODELIST'].to_s
+procs = ENV['SLURM_NPROCS'].to_i
 
 match = env_var.match('(?<cluster>\w)\[(?<start_node>\d{4})-(?<end_node>\d{4})\]')
 
@@ -14,7 +15,12 @@ if !match.nil?
                 "#{cluster}#{formatted}"
               end
 
-  puts node_list.join("\n")
+  # puts node_list.inspect
+
+  list = node_list.map do |node|
+    procs.times.map { |_| node }
+  end
+  puts list
 else
-  puts env_var
+  puts procs.times.map { |_| env_var }.join("\n")
 end
