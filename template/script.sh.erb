@@ -39,7 +39,7 @@ fi
 #
 
 # Load the required environment
-module load xalt/latest <%= context.version %>
+module load <%= context.version %>
 
 <% if context.user_license_provider == 'external' %>
 # Attempting to use a 3rd party license server
