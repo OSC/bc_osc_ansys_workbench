@@ -20,9 +20,9 @@ attributes:
     label: "Number of cores"
     help: |
       Number of cores on node type (4 GB per core unless requesting whole
-      node). Leave blank if requesting full node.
+      node).
     min: 1 
-    max: 28
+    max: 96
     step: 1
   bc_num_slots:
     help: |
