@@ -94,7 +94,7 @@ Edit `form.yml` and update these values for your cluster:
 |-----------|---------|-----------|
 | `cluster` | `"cardinal"` | Your cluster name |
 | `version` | `"2024 R1"` | Version(s) of Ansys available on your system |
-| `node_type` | `OSC-specific node types` | Node types available on your cluster |
+| `node_type` | OSC-specific node types | Node types available on your cluster |
 
 ### 3. Verify
 
@@ -111,7 +111,7 @@ No OOD restart is needed. Visit your OOD dashboard and look for **ANSYS Workbenc
 | `bc_num_hours` | Maximum wall time (hours) | `4` |
 | `bc_num_slots` | Number of nodes | `1` |
 | `num_cores` | Number of cores on node type | No default |
-| `reserve_parallel_licenses` | If selected, reserves Ansys parallel licenses for the duration of the job | `False` |
+| `reserve_parallel_licenses` | If selected, reserves Ansys parallel licenses for the duration of the job | False |
 | `node_type` | Compute node type (any, vis, hugemem) | `any` |
 | `bc_vnc_resolution` | Resolution of VNC desktop session | 1228 x 691 |
 | `user_license_provider` | Whether to use an OSC or external Ansys license | `I can use the OSC license` |
