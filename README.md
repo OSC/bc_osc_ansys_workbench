@@ -5,9 +5,11 @@
 
 ## Overview
 
-OSC Ansys Workbench is an Open OnDemand Batch Connect app designed for OSC that launches an Ansys Workbench as an interactive desktop. It runs in a heavily customized desktop/environment so that it works in OSC's supercomputer environment. Ansys is designed for students and researchers who need engineering simulation software.
+OSC Ansys Workbench is an [Open OnDemand](https://openondemand.org/) Batch Connect app that launches an Ansys Workbench as an interactive VNC desktop session on OSC HPC clusters. Ansys Workbench is an integrated simulation platform that includes CFX and Fluent solvers for computational fluid dynamics, structural analysis, and multiphysics simulations.
 
-- Upstream project: [Ansys](https://www.ansys.com/products/ansys-workbench)
+- **Upstream project:** [Ansys](https://www.ansys.com/products/ansys-workbench)
+- **Batch Connect template:** `vnc`
+- **Scheduler:** Slurm
 
 ## Screenshots
 
@@ -15,7 +17,15 @@ OSC Ansys Workbench is an Open OnDemand Batch Connect app designed for OSC that 
 
 ## Features
 
-- Launches Ansys via VNC desktop on compute nodes
+- Launches interactive Ansys Workbench via VNC desktop on compute nodes (launches `runwb2`)
+- Includes CFX and Fluent solvers with multi-node parallel support
+- GPU-accelerated 3D visualization on vis nodes using VirtualGL
+- Mesa software rendering fallback on non-GPU nodes (`CUE_GRAPHICS="mesa"`)
+- External license server support (configurable license server and file)
+- Optional parallel license reservation with automatic license calculation
+- Group-based access control (requires `ansysflu` group membership or external license)
+- Multi-node jobs with CFX parallel distributed start method
+- Xfce desktop environment with window manager
 - Configurable cores, wall time, Ansys version and node type via the launch form
 
 ## Requirements
@@ -41,13 +51,12 @@ For hardware rendering support:
 - [VirtualGL] 2.3+
 
 ### Open OnDemand
-- Open OnDemand 1.5+
+- Open OnDemand 1.5+ <!-- TODO: verify this -->
 - Scheduler: Slurm
 
 ### Optional
 
-- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` based
-  CLI used to load appropriate environments within the batch job
+- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` based CLI used to load appropriate environments within the batch job
 
 [Ansys Workbench]: https://www.ansys.com/
 [CFX]: https://www.ansys.com/Products/Fluids/Ansys-CFX
@@ -72,19 +81,7 @@ cd bc_osc_ansys_workbench
 git checkout v0.24.1
 ```
 
-You will not need to do anything beyond this as all necessary assets are
-installed. You will also not need to restart this app as it isn't a Passenger
-app.
-
-To update the app you would:
-
-```sh
-cd bc_osc_ansys_workbench
-git fetch
-git checkout <tag/branch>
-```
-
-Again, you do not need to restart the app as it isn't a Passenger app.
+No restart is needed -- Batch Connect apps are not Passenger apps and are detected automatically.
 
 ## 2. Configure for your site
 
@@ -93,30 +90,47 @@ Edit `form.yml` and update these values for your cluster:
 | Attribute | Default | Change to |
 |-----------|---------|-----------|
 | `cluster` | `"cardinal"` | Your cluster name |
-| `version` | `"2024 R1"` | Version(s) of Ansys available on your system |
+| `version` | `"ansys/2024 R1"` | Version(s) of Ansys available on your system |
 | `node_type` | OSC-specific node types | Node types available on your cluster |
+| `num_cores.max` | `96` | Max cores on your compute nodes |
+| `user_license_provider` | `osc` or `external` | Your license configuration|
 
-### 3. Verify
+In `script.sh.erb`, the app loads modules with:
+```
+module load ansys/<version>
+```
+On vis nodes, it additionally loads `virtualgl`
+Ensure equivalent modules are available on your system.
 
-No OOD restart is needed. Visit your OOD dashboard and look for **ANSYS Workbench** under **Interactive Apps > GUIs**.
+The `submit.yml.erb` manages ANSYS license tokens (`ansys@osc`, `ansyspar@osc`) and checks group membership (`ansysflu`). Update these references for your site's license server and group configuration.
+
+### To Update the App
+
+```sh
+cd /var/www/ood/apps/sys/bc_osc_ansys_workbench
+git fetch
+git checkout <tag>
+```
+
+No OOD restart is needed. 
 
 ## Configuration
 
 ### form.yml attributes
 
-| Attribute | Description | Default |
-|-----------|-------------|---------|
-| `cluster` | Target cluster ID | `"cardinal"` |
-| `version` | Version of Ansys to load on compute node | `"2024 R1"` |
-| `bc_num_hours` | Maximum wall time (hours) | `4` |
-| `bc_num_slots` | Number of nodes | `1` |
-| `num_cores` | Number of cores on node type | No default |
-| `reserve_parallel_licenses` | If selected, reserves Ansys parallel licenses for the duration of the job | False |
-| `node_type` | Compute node type (any, vis, hugemem) | `any` |
-| `bc_vnc_resolution` | Resolution of VNC desktop session | 1228 x 691 |
-| `user_license_provider` | Whether to use an OSC or external Ansys license | `I can use the OSC license` |
-| `extern_license_server` | (Optional) External license server | No default |
-| `extern_license_file` | (Optional) External license file | No default |
+| Attribute | Widget |Description | Default |
+|-----------|--------|-------------|---------|
+| `cluster` | select | Target cluster ID | `"cardinal"` |
+| `version` | select | Version of Ansys to load on compute node | `"ansys/2024R1"` |
+| `bc_num_hours` | number | Maximum wall time (hours) | `4` |
+| `bc_num_slots` | number | Number of nodes (Fluent/CFX multi-node support) | `1` |
+| `num_cores` | number_field | Number of cores per node (1--96, 4 GB per core) | `1` |
+| `reserve_parallel_licenses` | checkbox | If selected, reserves Ansys parallel licenses for the duration of the job | unchecked |
+| `node_type` | select | Compute node type (any, vis, hugemem) | `any` |
+| `bc_vnc_resolution` | text | Resolution of VNC desktop session | 1228 x 691 |
+| `user_license_provider` | select | License source: OSC license or external | `osc` |
+| `extern_license_server` | text | External license server (port@ip)| -- |
+| `extern_license_file` | text | External license file (port@ip)| -- |
 
 ## Environment variables
 
@@ -140,7 +154,7 @@ The app may need more time to start. Increase the connection timeout or check th
 
 | Site | OOD Version | Scheduler | Status |
 |------|-------------|-----------|--------|
-| Ohio Supercomputer Center | 4.1.4 | Slurm     | Production |
+| Ohio Supercomputer Center | 4.2.2 | Slurm     | Production |
 
 To verify your installation:
 
