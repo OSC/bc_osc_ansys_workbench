@@ -51,7 +51,7 @@ For hardware rendering support:
 - [VirtualGL] 2.3+
 
 ### Open OnDemand
-- Open OnDemand 1.5+ <!-- TODO: verify this -->
+- Tested to work with the latest version of Open OnDemand
 - Scheduler: Slurm
 
 ### Optional
