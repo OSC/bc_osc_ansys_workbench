@@ -68,7 +68,7 @@ attributes:
       - [
         'hugemem', 'hugemem',
         data-max-num-cores: 96,
-        data-min-num-cores: 47,
+        data-min-num-cores: 45,
         ]
   user_license_provider:
     widget: select
