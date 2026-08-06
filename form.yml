@@ -2,7 +2,7 @@
 cluster:
   - "cardinal"
 form:
-  - version
+  - auto_modules_ansys
   - auto_accounts
   - bc_num_hours
   - bc_num_slots
@@ -15,12 +15,16 @@ form:
   - extern_license_server
   - extern_license_file
 attributes:
+  auto_modules_ansys:
+    default: false
+    filter: "firstsolar"
+    help: "This defines the version of ANSYS you want to load."
+    label: "ANSYS version"
   num_cores:
     widget: "number_field"
     label: "Number of cores"
     help: |
-      Number of cores on node type (4 GB per core unless requesting whole
-      node).
+      Number of CPU cores per node (with 4.84 GB usable memory per core).
     min: 1 
     max: 96
     step: 1
@@ -35,20 +39,21 @@ attributes:
     unchecked_value: 0
     label: "Reserve ANSYS Parallel Licenses"
     help: |
-      - Ensure that enough parallel licenses are available for the number of nodes selected before starting the session.
+      - Please ensure that enough parallel licenses are available for the
+      number of nodes selected before starting the session.
   node_type:
     widget: select
     label: "Node type"
     help: |
-      - **any** - (*96 cores*) Use any available Cardinal node. This reduces the
-        wait time as there are no node requirements.
-      - **vis** - (*96 cores*) Use a Cardinal node that has an [NVIDIA NVIDIA H100
-        GPU](https://www.nvidia.com/en-us/data-center/h100/) with an X server
-        running in the background. This utilizes the GPU for hardware
-        accelerated 3D visualization.
-      - **hugemem** - (*96 cores*) Use an Cardinal node that has 2TB of
-        available RAM as well as 96 cores. There are 16 of these nodes on
-        Cardinal.
+      - **any** - (*1 to 96 cores*) Use any Cardinal node type. This reduces
+        the wait time as there are no node requirements.
+      - **vis** - (*1 to 96 cores*) Use the Cardinal node type that has an
+        [NVIDIA H100 GPU](https://www.nvidia.com/en-us/data-center/h100/) with
+        an X server running in the background. This utilizes the GPU for
+        hardware accelerated 3D visualization. There are 32 nodes of this type.
+      - **hugemem** - (*1 to 96 cores*) Use the Cardinal node type that has
+        2 TB of available RAM. There are 16 nodes of this type.
+        Requesting this node type always reserves entire nodes.
     options:
       - [
         'any', 'any',
@@ -65,17 +70,6 @@ attributes:
         data-max-num-cores: 96,
         data-min-num-cores: 47,
         ]
-  version:
-    widget: select
-    label: "ANSYS Workbench version"
-    help: "This defines the version of ANSYS you want to load."
-    options:
-    - [
-        "2024 R1", "ansys/2024R1",
-      ]
-    - [
-        "2025 R2", "ansys/2025R2",
-      ]
   user_license_provider:
     widget: select
     label: "License provider"

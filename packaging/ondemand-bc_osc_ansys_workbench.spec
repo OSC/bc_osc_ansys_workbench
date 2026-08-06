@@ -25,7 +25,7 @@ AutoReqProv: no
 
 %description
 A Batch Connect app designed for OSC OnDemand that launches an ANSYS Workbench 
-within an Oakley batch job. It runs in a heavily customized desktop/environment 
+within a batch job. It runs in a heavily customized desktop/environment 
 so that it works in OSC's supercomputer environment.
 
 %prep
