@@ -35,7 +35,7 @@ else
 fi
 
 #
-# Start ANSYS Workbench
+# Start Ansys Workbench
 #
 
 # Load the required environment
@@ -48,9 +48,9 @@ export ANSYSLI_SERVERS=<%= context.extern_license_server %>
 export ANSYSLMD_LICENSE_FILE=<%= context.extern_license_file %>
 <% end %>
 
-# Another ANSYS job with the same job name (file) is already running in this
+# Another Ansys job with the same job name (file) is already running in this
 # directory or the file.lock file has not been deleted from an abnormally
-# terminated ANSYS run.  To disable this check, set the ANSYS_LOCK environment
+# terminated Ansys run.  To disable this check, set the ANSYS_LOCK environment
 # variable to OFF.
 export ANSYS_LOCK="OFF"
 
@@ -64,7 +64,7 @@ export CUE_GRAPHICS="mesa"
 <%- end -%>
 
 # Fix bug when running Intel MPI code on OSC
-# May no longer be necessary? intelmpi seemed to be specific to ANSYS ~15
+# May no longer be necessary? intelmpi seemed to be specific to Ansys ~15
 # TODO check if this is still necessary
 export I_MPI_PMI_EXTENSIONS=on
 
@@ -112,7 +112,7 @@ node_parser > $NODEFILE
 # https://www.osc.edu/resources/technical_support/known_issues/parallel_job_with_intelmpi_hangs
 export -n I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS
 
-# Launch ANSYS Workbench
+# Launch Ansys Workbench
 <%- if gpu -%>
 module load virtualgl
 module list

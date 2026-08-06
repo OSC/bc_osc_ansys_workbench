@@ -18,8 +18,8 @@ attributes:
   auto_modules_ansys:
     default: false
     filter: "firstsolar"
-    help: "This defines the version of ANSYS you want to load."
-    label: "ANSYS version"
+    help: "This defines the version of Ansys you want to load."
+    label: "Ansys version"
   num_cores:
     widget: "number_field"
     label: "Number of cores"
@@ -37,7 +37,7 @@ attributes:
     widget: check_box
     checked_value: 1
     unchecked_value: 0
-    label: "Reserve ANSYS Parallel Licenses"
+    label: "Reserve Ansys Parallel Licenses"
     help: |
       - Please ensure that enough parallel licenses are available for the
       number of nodes selected before starting the session.

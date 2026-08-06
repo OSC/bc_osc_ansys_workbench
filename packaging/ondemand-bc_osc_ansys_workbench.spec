@@ -10,7 +10,7 @@
 Name:     ondemand-%{app_name}
 Version:  %{package_version}
 Release:  %{package_release}%{?dist}
-Summary:  Batch Connect - OSC ANSYS Workbench
+Summary:  Batch Connect - OSC Ansys Workbench
 
 Group:    System Environment/Daemons
 License:  MIT
@@ -24,7 +24,7 @@ Requires: ondemand
 AutoReqProv: no
 
 %description
-A Batch Connect app designed for OSC OnDemand that launches an ANSYS Workbench 
+A Batch Connect app designed for OSC OnDemand that launches an Ansys Workbench 
 within a batch job. It runs in a heavily customized desktop/environment 
 so that it works in OSC's supercomputer environment.
 
