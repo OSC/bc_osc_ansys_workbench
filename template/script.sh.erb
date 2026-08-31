@@ -39,7 +39,7 @@ fi
 #
 
 # Load the required environment
-module load <%= context.version %>
+module load <%= context.auto_modules_ansys %>
 
 <% if context.user_license_provider == 'external' %>
 # Attempting to use a 3rd party license server
