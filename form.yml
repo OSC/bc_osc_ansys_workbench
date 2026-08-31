@@ -2,7 +2,7 @@
 cluster:
   - "cardinal"
 form:
-  - version
+  - auto_modules_ansys
   - auto_accounts
   - bc_num_hours
   - bc_num_slots
@@ -15,6 +15,9 @@ form:
   - extern_license_server
   - extern_license_file
 attributes:
+  auto_modules_ansys:
+    default: false
+    filter: \d+R\d-
   num_cores:
     widget: "number_field"
     label: "Number of cores"
