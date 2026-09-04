@@ -114,7 +114,7 @@ export -n I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS
 
 # Launch ANSYS Workbench
 <%- if gpu -%>
-module load virtualgl
+LMOD_EXACT_MATCH=no module load virtualgl
 module list
 set -x
 vglrun runwb2
