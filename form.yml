@@ -17,7 +17,7 @@ form:
 attributes:
   auto_modules_ansys:
     default: false
-    filter: "firstsolar"
+    filter: \d+R\d-
     help: "This defines the version of Ansys you want to load."
     label: "Ansys version"
   num_cores:
