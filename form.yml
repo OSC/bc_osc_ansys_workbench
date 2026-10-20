@@ -4,30 +4,29 @@ cluster:
 form:
   - auto_modules_ansys
   - auto_accounts
-  - bc_num_hours
+  - global_job_type
+  - global_enable_mem
   - bc_num_slots
-  - num_cores
+  - global_num_cores
+  - global_mem
+  - global_gpus
+  - global_gpu_type
+  - global_enable_debug
+  - global_enable_vis
+  - bc_num_hours
   - reserve_parallel_licenses
-  - node_type
   - bc_vnc_resolution
   - bc_email_on_started
   - user_license_provider
   - extern_license_server
   - extern_license_file
+  - global_default_values     # required if the global_job_type is used
 attributes:
   auto_modules_ansys:
     default: false
     filter: \d+R\d-
     help: "This defines the version of Ansys you want to load."
     label: "Ansys version"
-  num_cores:
-    widget: "number_field"
-    label: "Number of cores"
-    help: |
-      Number of CPU cores per node (with 4.84 GB usable memory per core).
-    min: 1 
-    max: 96
-    step: 1
   bc_num_slots:
     help: |
       Currently only Fluent and CFX have been tested to support multiple nodes.
@@ -41,35 +40,6 @@ attributes:
     help: |
       - Please ensure that enough parallel licenses are available for the
       number of nodes selected before starting the session.
-  node_type:
-    widget: select
-    label: "Node type"
-    help: |
-      - **any** - (*1 to 96 cores*) Use any Cardinal node type. This reduces
-        the wait time as there are no node requirements.
-      - **vis** - (*1 to 96 cores*) Use the Cardinal node type that has an
-        [NVIDIA H100 GPU](https://www.nvidia.com/en-us/data-center/h100/) with
-        an X server running in the background. This utilizes the GPU for
-        hardware accelerated 3D visualization. There are 32 nodes of this type.
-      - **hugemem** - (*1 to 96 cores*) Use the Cardinal node type that has
-        2 TB of available RAM. There are 16 nodes of this type.
-        Requesting this node type always reserves entire nodes.
-    options:
-      - [
-        'any', 'any',
-        data-max-num-cores: 96,
-        data-min-num-cores: 1,
-        ]
-      - [
-        'vis', 'vis',
-        data-max-num-cores: 96,
-        data-min-num-cores: 1,
-        ]
-      - [
-        'hugemem', 'hugemem',
-        data-max-num-cores: 96,
-        data-min-num-cores: 45,
-        ]
   user_license_provider:
     widget: select
     label: "License provider"
