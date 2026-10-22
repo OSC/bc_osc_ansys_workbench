@@ -9,7 +9,7 @@
   # https://ansyshelp.ansys.com/public/account/secured?returnurl=/Views/Secured/corp/v261/en/ans_dan/Hlp_G_ADVPARA_1.html
   num_cpus_for_free = 4
 
-  licensed_cpus = ( global_num_nodes.to_i * global_num_cores.to_i ) - num_cpus_for_free
+  licensed_cpus = ( bc_num_slots.to_i * global_num_cores.to_i ) - num_cpus_for_free
 
   # Do not attempt to reserve negative licenses
   need_parallel_licenses = reserve_parallel_licenses.to_i == 1 && licensed_cpus > 0
@@ -20,9 +20,6 @@
 ---
 batch_connect:
   template: "vnc"
-# set license
-  - "--licenses"
-  - "<%= licenses %>"
 
 script:
   # set GPUs
@@ -55,3 +52,6 @@ script:
   - "--gres"
   - "vis"
   <%- end %>
+  # set license
+  - "--licenses"
+  - "<%= licenses %>"
