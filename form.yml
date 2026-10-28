@@ -43,7 +43,7 @@ attributes:
   user_license_provider:
     widget: select
     label: "License provider"
-    help: "Some users are required to provide their own license information"
+    help: "Some users are required to provide their own license information."
     options:
       - [
           'I can use the OSC license', 'osc',
