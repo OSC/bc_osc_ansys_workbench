@@ -6,20 +6,20 @@ form:
   - auto_accounts
   - global_job_type
   - global_enable_mem
-  - bc_num_slots
+  - bc_num_nodes
   - global_num_cores
   - global_mem
+  - bc_num_hours
   - global_gpus
   - global_gpu_type
-  - global_enable_debug
   - global_enable_vis
-  - bc_num_hours
+  - global_enable_debug
   - reserve_parallel_licenses
-  - bc_vnc_resolution
-  - bc_email_on_started
   - user_license_provider
   - extern_license_server
   - extern_license_file
+  - bc_vnc_resolution
+  - bc_email_on_started
   - global_default_values     # required if the global_job_type is used
 attributes:
   auto_modules_ansys:
@@ -27,7 +27,7 @@ attributes:
     filter: \d+R\d-
     help: "This defines the version of Ansys you want to load."
     label: "Ansys version"
-  bc_num_slots:
+  bc_num_nodes:
     help: |
       Currently only Fluent and CFX have been tested to support multiple nodes.
   bc_vnc_resolution:
