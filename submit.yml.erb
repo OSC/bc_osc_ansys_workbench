@@ -3,33 +3,55 @@
   err_msg = "You are not a member of the ansysflu group. Please email oschelp@osc.edu to request access to Ansys Workbench, or use an external license."
   raise(StandardError, err_msg) unless CurrentUser.group_names.include?('ansysflu') || user_license_provider == 'external'
 
-  nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
+  # There aren't global licenses in this case, so do not use global_licenses.
+  # As of Mechanical APDL 2026 R1: "By default, SMP processing uses four cores and
+  # does not require any HPC licenses."
+  # https://ansyshelp.ansys.com/public/account/secured?returnurl=/Views/Secured/corp/v261/en/ans_dan/Hlp_G_ADVPARA_1.html
   num_cpus_for_free = 4
-  ppn = num_cores.to_i
 
-  case node_type
-  when "hugemem"
-    partition = bc_num_slots.to_i > 1 ? "hugemem-parallel" : "hugemem"
-    slurm_args = [ "--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--partition", partition ]
-  when "vis"
-    slurm_args = ["--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--gpus-per-node", "1", "--gres", "vis" ]
-  else
-    slurm_args = ["--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}" ]
-  end
+  licensed_cpus = ( bc_num_nodes.to_i * global_num_cores.to_i ) - num_cpus_for_free
 
-  licensed_cpus = (nodes * ppn) - num_cpus_for_free
   # Do not attempt to reserve negative licenses
   need_parallel_licenses = reserve_parallel_licenses.to_i == 1 && licensed_cpus > 0
 
   licenses = need_parallel_licenses ? "ansys@osc:1,ansyspar@osc:#{licensed_cpus}" : "ansys@osc:1"
 
-  slurm_args += [ "--licenses", licenses ]
 %>
 ---
 batch_connect:
   template: "vnc"
+
 script:
-  native:
-  <%- slurm_args.each do |arg| %>
-    - "<%= arg %>"
+  # set GPUs
+  <%- if global_gpus.to_i > 0 -%>
+  gpus_per_node: <%= global_gpus %>
   <%- end %>
+  native:
+  # set nodes
+  - "--nodes"
+  - "<%= bc_num_nodes.to_i %>"
+  # set CPUs
+  - "--ntasks-per-node"
+  - "<%= global_num_cores.to_i %>"
+  # set partition
+  - "--partition"
+  <%- if global_enable_debug.to_i == 1 -%>
+  - "debug"
+  <%- elsif global_gpus.to_i > 0 -%>
+  - "<%= global_gpu_type.split('-').drop(1).join('-') %>"
+  <%- else %>
+  - "batch"
+  <%- end %>
+  # set memory
+  <%- if global_enable_mem.to_i == 1  -%>
+  - "--mem"
+  - "<%= global_mem.to_i%>G"
+  <%- end %>
+  # set visualization
+  <%- if global_enable_vis.to_i == 1 -%>
+  - "--gres"
+  - "vis"
+  <%- end %>
+  # set license
+  - "--licenses"
+  - "<%= licenses %>"
